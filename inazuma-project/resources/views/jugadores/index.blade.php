@@ -12,7 +12,7 @@
 
         <nav class="navbar navbar-expand-lg bg-body-tertiary">
             <div class="container-fluid">
-                <a class="navbar-brand" href="#">Proyecto Inazuma</a>
+                <a class="navbar-brand" href="#">⚽ Proyecto Inazuma</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarScroll" aria-controls="navbarScroll" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
                 </button>
@@ -26,18 +26,25 @@
                     <a class="nav-link" href="#">Equipos</a>
                     </li>
                     
-
                     <li class="nav-item">
                     <a class="nav-link" href="#">Tecnicas</a>
                     </li>
-
-
-
                 </ul>
-                <form class="d-flex" role="search">
-                    <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search"/>
-                    <button class="btn btn-outline-success" type="submit">Search</button>
-                </form>
+                
+                <div class="d-flex align-items-center">
+                    <span class="me-3">
+                        <strong>{{ auth()->user()->nombre }}</strong>
+                        @if(auth()->user()->esAdmin())
+                            <span class="badge bg-danger">Admin</span>
+                        @else
+                            <span class="badge bg-primary">Usuario</span>
+                        @endif
+                    </span>
+                    <form action="{{ route('logout') }}" method="POST">
+                        @csrf
+                        <button type="submit" class="btn btn-outline-danger btn-sm">Cerrar Sesión</button>
+                    </form>
+                </div>
                 </div>
             </div>
             </nav>
@@ -99,7 +106,9 @@
     <div class="container mt-5">
         <div class="d-flex justify-content-between align-items-center mb-4">
             <h1>Fichajes Inazuma Eleven</h1>
-            <a href="{{ route('jugadores.create') }}" class="btn btn-success">Agregar Jugador</a>
+            @if(auth()->user()->esAdmin())
+                <a href="{{ route('jugadores.create') }}" class="btn btn-success">Agregar Jugador</a>
+            @endif
         </div>
         @if(session('mensaje'))
             <div class="alert alert-success alert-dismissible fade show" role="alert">
@@ -142,7 +151,9 @@
                     <td>{{ $jugador->equipo->nombre }}</td>
                     <td>
                         <div class="btn-group" role="group">
-                            <a href="{{ route('jugadores.edit', $jugador->id) }}" class="btn btn-sm btn-primary">Editar</a>
+                            @if(auth()->user()->esAdmin())
+                                <a href="{{ route('jugadores.edit', $jugador->id) }}" class="btn btn-sm btn-primary">Editar</a>
+                            @endif
                             <form action="{{ route('jugadores.fichar', $jugador->id) }}" method="POST" style="display: inline;">
                                 @csrf
                                 <button type="submit" class="btn btn-sm btn-success">Fichar</button>

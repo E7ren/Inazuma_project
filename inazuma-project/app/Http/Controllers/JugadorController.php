@@ -107,11 +107,11 @@ class JugadorController extends Controller
 
     public function fichar(Request $request, $id)
     {
-        $existe = MiEquipo::where('jugador_id', $id)->exists();
+        $existe = MiEquipo::where('id_jugador', $id)->exists();
 
         if (!$existe) {
             MiEquipo::create([
-                'jugador_id' => $id
+                'id_jugador' => $id
             ]);
             return redirect()->back()->with('mensaje', '¡Jugador fichado con éxito!');
         }
