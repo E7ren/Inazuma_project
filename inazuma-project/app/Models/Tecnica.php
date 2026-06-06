@@ -24,4 +24,12 @@ class Tecnica extends Model
     {
         return $this->belongsTo(Elemento::class, 'id_elemento');
     }
+
+    /**
+     * Relación: Una técnica puede ser usada por muchos jugadores
+     */
+    public function jugadores()
+    {
+        return $this->belongsToMany(Jugador::class, 'jugador_tecnica', 'id_tecnica', 'id_jugador');
+    }
 }

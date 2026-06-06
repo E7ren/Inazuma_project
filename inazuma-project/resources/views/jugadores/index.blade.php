@@ -19,15 +19,15 @@
                 <div class="collapse navbar-collapse" id="navbarScroll">
                 <ul class="navbar-nav me-auto my-2 my-lg-0 navbar-nav-scroll" style="--bs-scroll-height: 100px;">
                     <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="#">Jugadores</a>
+                    <a class="nav-link active" aria-current="page" href="{{ route('jugadores.index') }}">Jugadores</a>
                     </li>
 
                     <li class="nav-item">
-                    <a class="nav-link" href="#">Equipos</a>
+                    <a class="nav-link" href="{{ route('equipos.index') }}">Equipos</a>
                     </li>
                     
                     <li class="nav-item">
-                    <a class="nav-link" href="#">Tecnicas</a>
+                    <a class="nav-link" href="{{ route('tecnicas.index') }}">Tecnicas</a>
                     </li>
                 </ul>
                 

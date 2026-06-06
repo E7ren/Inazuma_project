@@ -33,4 +33,12 @@ class Jugador extends Model
     {
         return $this->belongsTo(Equipo::class, 'id_equipo');
     }
+
+    /**
+     * Relación: Un jugador tiene muchas técnicas
+     */
+    public function tecnicas()
+    {
+        return $this->belongsToMany(Tecnica::class, 'jugador_tecnica', 'id_jugador', 'id_tecnica');
+    }
 }
