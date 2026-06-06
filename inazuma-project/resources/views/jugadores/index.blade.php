@@ -112,10 +112,6 @@
                             @if(auth()->user()->esAdmin())
                                 <a href="{{ route('jugadores.edit', $jugador->id) }}" class="btn btn-sm btn-primary">Editar</a>
                             @endif
-                            <form action="{{ route('jugadores.fichar', $jugador->id) }}" method="POST" style="display: inline;">
-                                @csrf
-                                <button type="submit" class="btn btn-sm btn-success">Fichar</button>
-                            </form>
                         </div>
                     </td>
                 </tr>
